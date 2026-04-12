@@ -1,10 +1,9 @@
 import { Link } from "react-router";
-import { Shield, Zap, BarChart3, Menu, X, CheckCircle, Users, Ticket, Clock, Star, ArrowUp, Moon, Sun } from "lucide-react";
+import { QrCode, Shield, Zap, BarChart3, Menu, X, CheckCircle, Users, Ticket, Clock, Star, ArrowUp, Moon, Sun } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useTheme } from "../context/ThemeContext";
-import { LucernasLogo } from "../components/LucernasLogo";
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,7 +54,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2 cursor-pointer">
-              <LucernasLogo size={40} />
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-primary-foreground">
+                  <path d="M12 2C10 6 7 8 7 12a5 5 0 0010 0c0-4-3-6-5-10z"/>
+                </svg>
+              </div>
               <span className="text-xl font-bold text-primary">Lucernas</span>
             </motion.div>
 
@@ -267,7 +270,9 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <LucernasLogo size={32} />
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <QrCode className="w-5 h-5 text-primary-foreground" />
+                </div>
                 <span className="text-lg font-bold">Lucernas</span>
               </div>
               <p className="text-background/60 text-sm">Next-generation event management platform for universities</p>

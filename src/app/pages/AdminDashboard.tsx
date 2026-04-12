@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         <div className="bg-card border-b border-border px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground">Dashboard</h1>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1 capitalize">
-            Welcome back, {role}! Here's what's happening today.
+            Welcome back, {currentUser.name}! Here's what's happening today.
           </p>
         </div>
 
@@ -46,6 +46,7 @@ export default function AdminDashboard() {
                 <Plus className="w-6 h-6 sm:w-7 sm:h-7 group-hover:scale-110 transition shrink-0" />
               </Link>
             )}
+
             {(role === "admin" || role === "governor") && (
               <Link to="/analytics" className="bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground p-4 sm:p-5 rounded-xl shadow-lg flex items-center justify-between group">
                 <div>
@@ -55,6 +56,7 @@ export default function AdminDashboard() {
                 <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 group-hover:scale-110 transition shrink-0" />
               </Link>
             )}
+
             {(role === "admin" || role === "governor") && (
               <Link to="/college" className="bg-gradient-to-r from-primary/70 to-primary/50 text-primary-foreground p-4 sm:p-5 rounded-xl shadow-lg flex items-center justify-between group">
                 <div>
@@ -71,10 +73,10 @@ export default function AdminDashboard() {
           {/* SUMMARY CARDS */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { icon: Ticket,      label: "Total Tickets", value: "1,245", color: "text-primary" },
-              { icon: ScanLine,    label: "Scanned Today", value: "513",   color: "text-secondary" },
-              { icon: Calendar,    label: "Active Events", value: "12",    color: "text-accent" },
-              { icon: TrendingUp,  label: "Success Rate",  value: "98.5%", color: "text-primary" },
+              { icon: Ticket, label: "Total Tickets", value: "1,245", color: "text-primary" },
+              { icon: ScanLine, label: "Scanned Today", value: "513", color: "text-secondary" },
+              { icon: Calendar, label: "Active Events", value: "12", color: "text-accent" },
+              { icon: TrendingUp, label: "Success Rate", value: "98.5%", color: "text-primary" },
             ].map(({ icon: Icon, label, value, color }) => (
               <div key={label} className="bg-card rounded-xl shadow p-4 sm:p-5 border border-border">
                 <Icon className={`mb-2 sm:mb-3 w-5 h-5 sm:w-6 sm:h-6 ${color}`} />
@@ -84,18 +86,48 @@ export default function AdminDashboard() {
             ))}
           </div>
 
-          {/* CHART — admin & governor */}
+          {/* CHART */}
           {(role === "admin" || role === "governor") && (
             <div className="bg-card rounded-xl shadow p-4 sm:p-5 border border-border">
-              <h2 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Attendance Overview</h2>
+              <h2 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">
+                Attendance Overview
+              </h2>
+
               <div className="h-52 sm:h-64 md:h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
+                    
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                    <XAxis dataKey="name" stroke="var(--muted-foreground)" tick={{ fontSize: 11 }} />
-                    <YAxis stroke="var(--muted-foreground)" tick={{ fontSize: 11 }} />
-                    <Tooltip contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", color: "var(--foreground)", fontSize: "12px" }} />
-                    <Line type="monotone" dataKey="scans" stroke="var(--primary)" strokeWidth={2.5} dot={{ fill: "var(--primary)", r: 4 }} />
+
+                    <XAxis
+                      dataKey="name"
+                      stroke="var(--muted-foreground)"
+                      tick={{ fill: "var(--foreground)", fontSize: 11 }}
+                    />
+
+                    <YAxis
+                      stroke="var(--muted-foreground)"
+                      tick={{ fill: "var(--foreground)", fontSize: 11 }}
+                    />
+
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "var(--card)",
+                        border: "1px solid var(--border)",
+                        color: "var(--foreground)",
+                        fontSize: "12px"
+                      }}
+                      labelStyle={{ color: "var(--foreground)" }}
+                      itemStyle={{ color: "var(--foreground)" }}
+                    />
+
+                    <Line
+                      type="monotone"
+                      dataKey="scans"
+                      stroke="var(--primary)"
+                      strokeWidth={2.5}
+                      dot={{ fill: "var(--primary)", r: 4 }}
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -108,7 +140,6 @@ export default function AdminDashboard() {
               <h2 className="text-base sm:text-lg font-semibold text-foreground">Recent Scans</h2>
             </div>
 
-            {/* Mobile cards */}
             <div className="block sm:hidden divide-y divide-border">
               {recentScans.map((scan) => (
                 <div key={scan.id} className="px-4 py-3 flex items-center justify-between gap-3">
@@ -120,12 +151,13 @@ export default function AdminDashboard() {
                     scan.status === "Valid"
                       ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                       : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-                  }`}>{scan.status}</span>
+                  }`}>
+                    {scan.status}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* Table for sm+ */}
             <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-muted">
@@ -145,7 +177,9 @@ export default function AdminDashboard() {
                           scan.status === "Valid"
                             ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                             : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-                        }`}>{scan.status}</span>
+                        }`}>
+                          {scan.status}
+                        </span>
                       </td>
                     </tr>
                   ))}
