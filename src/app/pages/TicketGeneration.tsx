@@ -1,6 +1,6 @@
 import { DesktopSidebar, currentUser } from "../components/Sidebar";
 import { MobileNav } from "../components/MobileNav";
-import { Plus, Ticket, QrCode, Download, Trash2 } from "lucide-react";
+import { Plus, Ticket, QrCode } from "lucide-react";
 import { useState } from "react";
 
 interface TicketForm {
@@ -71,7 +71,7 @@ export default function TicketGeneration() {
                 <select value={form.college} onChange={e => setForm({ ...form, college: e.target.value })}
                   className="w-full px-3 py-2.5 text-sm border border-border rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
                   <option value="">Select college</option>
-                  {["All", "CCS", "COE", "CBA", "CAS", "CON"].map(c => <option key={c} value={c}>{c}</option>)}
+                  {["All", "Laboratory School", "College of Business and Accountancy", "College of Arts and Social Sciences", "College of Public Administration and Governance", "College of Engineering","College of Computer Studies","College of Industrial Technology","College of Architecture and Fine Arts","College of Education","College of Science","College of Criminal Justice Education","Graduate School", "School of Law"].map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
@@ -107,7 +107,7 @@ export default function TicketGeneration() {
               <table className="w-full text-sm">
                 <thead className="bg-muted">
                   <tr>
-                    {["Ticket ID", "Event", "College", "Date", "Status", ""].map(h => (
+                    {["Ticket ID", "Event", "College", "Date", "Status"].map(h => (
                       <th key={h} className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">{h}</th>
                     ))}
                   </tr>
@@ -121,11 +121,6 @@ export default function TicketGeneration() {
                       <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">{t.date}</td>
                       <td className="px-4 py-3">
                         <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">{t.status}</span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <button className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-primary transition">
-                          <Download className="w-4 h-4" />
-                        </button>
                       </td>
                     </tr>
                   ))}

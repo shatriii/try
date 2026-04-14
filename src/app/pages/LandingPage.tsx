@@ -115,7 +115,7 @@ export default function LandingPage() {
           <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="inline-block bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
-              <span className="text-sm font-semibold text-primary">✨ Next-Gen Event Management</span>
+              <span className="text-sm font-semibold text-primary">Not just tickets. An experience. A legacy. A Lucernas moment.</span>
             </motion.div>
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
               Secure QR Code
@@ -125,15 +125,9 @@ export default function LandingPage() {
               Fast, secure event entry management for university events. Generate QR tickets, scan entries in real-time, and monitor attendance seamlessly with our modern platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/signup">
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  className="bg-primary text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-primary/90 transition">
-                  Get Started Free
-                </motion.button>
-              </Link>
               <Link to="/login">
                 <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  className="border-2 border-primary text-primary px-8 py-4 rounded-xl text-lg font-semibold hover:bg-primary/10 transition">
+                  className="bg-primary text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-primary/90 transition">
                   Log In
                 </motion.button>
               </Link>
@@ -247,16 +241,10 @@ export default function LandingPage() {
               Join hundreds of universities already using Lucernas to streamline their event management
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
-                <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-secondary/90 transition">
-                  Get Started Now
-                </motion.button>
-              </Link>
               <Link to="/login">
                 <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                  className="border-2 border-primary-foreground text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold hover:bg-primary-foreground/10 transition">
-                  Log In
+                  className="bg-secondary text-secondary-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-secondary/90 transition">
+                  Log In Now
                 </motion.button>
               </Link>
             </div>
@@ -275,7 +263,7 @@ export default function LandingPage() {
                 </div>
                 <span className="text-lg font-bold">Lucernas</span>
               </div>
-              <p className="text-background/60 text-sm">Next-generation event management platform for universities</p>
+              <p className="text-background/60 text-sm">Not just tickets. An experience. A legacy. A Lucernas moment.</p>
             </div>
             {[
               { title: "Product", links: ["Features", "How It Works", "Pricing"] },
@@ -293,7 +281,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="border-t border-background/20 pt-8 text-center text-background/60 text-sm">
-            <p>© 2026 Lucernas. All rights reserved. Made with ❤️ for universities worldwide.</p>
+            <p>© 2026 Lucernas. All rights reserved. Powering every event, one QR code at a time.</p>
           </div>
         </div>
       </footer>

@@ -4,9 +4,8 @@ import { Mail, Lock, Eye, EyeOff, Moon, Sun, AlertCircle } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { setCurrentUser } from "../components/Sidebar";
 
-// ─── Hardcoded accounts ───────────────────────────────────────────────────────
 const ACCOUNTS: Record<string, { password: string; role: "admin" | "governor" | "organizer"; name: string }> = {
-  "tashing112705@gmail.com":   { password: "trisha112705@",  role: "admin",     name: "Trisha" },
+  "tashing112705@gmail.com":   { password: "trisha112705@",  role: "admin",     name: "Trisha Banting" },
   "arielflores@gmail.com":     { password: "ariel12345@",    role: "governor",  name: "Ariel Flores" },
   "heveininocencio@gmail.com": { password: "hevein12345@",   role: "organizer", name: "Hevein Inocencio" },
   "mjalvaro@gmail.com":        { password: "mj122345@",      role: "organizer", name: "MJ Alvaro" },
@@ -98,7 +97,7 @@ export default function LoginPage() {
             <div>
               <label className="text-sm font-medium text-foreground">Password</label>
               <div className="relative mt-1">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -110,9 +109,11 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition z-10"
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
                 </button>
               </div>
             </div>

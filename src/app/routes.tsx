@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import TicketGeneration from "./pages/TicketGeneration";
 import CollegeDashboard from "./pages/CollegeDashboard";
@@ -18,10 +17,6 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
-  },
-  {
-    path: "/signup",
-    element: <SignupPage />,
   },
   {
     path: "/admin",
